@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Callable, List, Union
+from neurons import McCullochPitsNeuron
 
 
 class NeuralNetwork(ABC):
@@ -24,9 +25,7 @@ class NeuralNetwork(ABC):
         """Questo metodo permette di definire un layer con n neuroni che utilizzano tutti una determinata activation function"""
 
         if self.debug:
-            print(
-                f"n_neurons: {n_neurons}, inputMatrix lenght: {len(inputMatrix)}\n"
-            )
+            print(f"n_neurons: {n_neurons}, inputMatrix lenght: {len(inputMatrix)}\n")
 
         if n_neurons != len(inputMatrix):
             raise ValueError(
