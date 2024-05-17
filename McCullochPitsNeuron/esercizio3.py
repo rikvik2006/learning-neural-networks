@@ -19,11 +19,14 @@ class NeuralNetwork:
         #             "You can only give 2 input data to every single neuron"
         #         )
 
-        activation1, activation2 = self.__layer(2, activationFunction, *inputs)
-        outputActivation = self.__layer(
-            1,
+        activation1, activation2 = self.__layer(
+            2,
             activationFunction,
-            [activation1, activation2],
+            [0.5, 0.5],
+            *inputs,
+        )
+        outputActivation = self.__layer(
+            1, activationFunction, [0.5, 0.5], [activation1, activation2]
         )
 
         if self.debug:
@@ -38,10 +41,12 @@ class NeuralNetwork:
         self,
         n_neurons: int,
         activationFunction: Callable[[float], Union[int, float]],
+        weigths: List[float],
         *inputMatrix: List[Union[int, float]],
     ) -> List[Union[int, float]]:
         """Questo metodo permette di definire un layer con n neuroni che utilizzano tutti una determinata activation function"""
 
+        print("🤔", weigths)
         if self.debug:
             print(
                 f"n_neurons: {n_neurons}, inputMatrix lenght: {len(inputMatrix)}\n"
@@ -56,7 +61,7 @@ class NeuralNetwork:
         self.activations: List[Union[int, float]] = []
 
         for i in range(n_neurons):
-            neuron = McCullochPitsNeuron()
+            neuron = McCullochPitsNeuron(weight=weigths)
             self.neurons.append(neuron)
             activation = neuron.output(inputMatrix[i], activationFunction)
             self.activations.append(activation)
@@ -81,7 +86,7 @@ print(f"🌟 Output neurone: {output}\n--------\n")
 
 print("\n----Dati in R----")
 output = neural_network.output(
-    ActivationFunctions.sigmoidFunction, [3, -2, 5.4], [0.1, -5, 3.2]
+    ActivationFunctions.sigmoidFunction, [3, -2], [0.1, -5]
 )
 print(f"🌟 Output neurone: {output}\n--------\n")
 output = neural_network.output(

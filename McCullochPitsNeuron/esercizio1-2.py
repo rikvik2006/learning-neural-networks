@@ -2,7 +2,7 @@ import math
 
 from neurons import ActivationFunctions, McCullochPitsNeuron
 
-neuron = McCullochPitsNeuron()
+neuron = McCullochPitsNeuron(weight=[0.5, 0.5])
 print("Funzione di attivazione sigmoide")
 print("----Dati binari----")
 print(neuron.output([0, 0], ActivationFunctions.sigmoidFunction))
