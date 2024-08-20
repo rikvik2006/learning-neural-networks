@@ -3,9 +3,11 @@ import random
 from rosenblattPerception import RosenblattPerception
 from rosenblattPerception import ActivationFunctions
 
+initialisedWeights = [random.random(), random.random(), random.random()]
+print("⚖️ Initialised weights:", initialisedWeights)
 
 neuron = RosenblattPerception(
-    [random.random(), random.random(), random.random()],
+    initialisedWeights,
     ActivationFunctions.heavisideSteupFunction,
 )
 
@@ -24,8 +26,9 @@ for epoch in range(100):
 
 
 # verifica dell'addestramento
+print("\n⭐ Final Results:")
 print(neuron.output([0, 0]))
 print(neuron.output([0, 1]))
 print(neuron.output([1, 0]))
 print(neuron.output([1, 1]))
-print("Weight: ", neuron.weights)
+print("Final Weight: ", neuron.weights)

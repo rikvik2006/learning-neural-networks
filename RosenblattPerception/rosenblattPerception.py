@@ -17,7 +17,7 @@ class ActivationFunctions:
 
 
 class RosenblattPerception:
-    # The frist weight is the Bias
+    # Il primo peso è il Bias del neurone, gli altri pesi sono i pesi che saranno assegnati ad ogni rispettivo input
     def __init__(
         self,
         weights: List[Union[int, float]],
@@ -33,8 +33,11 @@ class RosenblattPerception:
         # Inizializziamo il valore della soma pesata prendendo il valore del BIAS
         weighted_sum = self.weights[0]
 
+        # Calcoliamo la somma pesata saltando il Bias come peso dato che l'abbiamo già aggiunto
         for i in range(len(inputs)):
             weighted_sum += inputs[i] * self.weights[i + 1]
+
+        # Restituiamo il risultato della activation function
         return self.activation_function(weighted_sum)
 
     def learn(self, x, y_label, learning_rate: float):
